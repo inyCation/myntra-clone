@@ -274,7 +274,7 @@ main .card-container {
     display: block;
 }
 .bag-container .cart{
-    margin-top: 1rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -282,19 +282,16 @@ main .card-container {
 }
 .bag-container .cart .cart-items{
     display: flex;
-    justify-content: space-evenly;
+    
     align-items: center;
     flex-direction: column;
     text-transform: capitalize;
     height: 80vh;
     overflow-y: scroll;
-    margin-bottom: 5rem;
+    
     position: absolute;
     left: 5vw;
-    top: 5vh;
-
-
-    
+    top: -6vh;
 
 }
 .bag-container .cart .cart-items .items{
@@ -302,15 +299,14 @@ main .card-container {
     justify-content: space-between;
     align-items: start;
     flex-direction: row;
-
+    
     width: 60vw;
-    /* height: 210px; */
     border-top: 2px solid rgb(0, 0, 0);
-    padding: .5rem;
+    padding: 1rem;
     position: relative;
 }
 .cart .cart-items .items:first-child{
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 .cart .cart-items .items .image img{
     height: 200px;
