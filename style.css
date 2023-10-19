@@ -282,7 +282,7 @@ main .card-container {
 }
 .bag-container .cart .cart-items{
     display: flex;
-    
+
     align-items: center;
     flex-direction: column;
     text-transform: capitalize;
@@ -341,7 +341,9 @@ main .card-container {
 }   
 
 
-
+.remove-items{
+    cursor: pointer;
+}
 
 
 

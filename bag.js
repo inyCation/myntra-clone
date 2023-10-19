@@ -1,4 +1,4 @@
-bagItem =  JSON.parse(localStorage.getItem("cartItems")) || [];
+bagItem = JSON.parse(localStorage.getItem("cartItems")) || [];
 let bagItemsObjects;
 onLoadCalls();
 
@@ -7,7 +7,8 @@ let bagContainer = document.querySelector('.bag-container');
 let bag_icon = document.querySelector('.shopping_bag');
 let count = document.querySelector('.bagItemCount');
 
-bag.addEventListener('click',() =>{
+bag.addEventListener('click', () => {
+    displayBagItems();
     bagContainer.classList.toggle('bag-display');
     if (bag_icon.innerText === "shopping_bag") {
         bag_icon.innerText = "close";
@@ -24,22 +25,22 @@ bag.addEventListener('click',() =>{
 })
 
 
-function onLoadCalls(){
+function onLoadCalls() {
     loadBagItems();
     displayBagItems();
 }
 
-function loadBagItems(){
-    bagItemsObjects =  bagItem.map(itemID => {
-        for(let i = 0; i<items.length;i++){
-            if(itemID == items[i].itemId){
+function loadBagItems() {
+    bagItemsObjects = bagItem.map(itemID => {
+        for (let i = 0; i < items.length; i++) {
+            if (itemID == items[i].itemId) {
                 return items[i];
             }
         }
     });
 }
 
-function displayBagItems(){
+function displayBagItems() {
     let cartItem = document.querySelector('.cart-items');
     let innerHtml = "";
     bagItemsObjects.forEach(bagItem => {
@@ -48,7 +49,7 @@ function displayBagItems(){
     cartItem.innerHTML = innerHtml;
 }
 
-function generateHtml(item){
+function generateHtml(item) {
     return `<div class="items">
         <div class="image">
             <img src="${item.itemImage}" alt="product_image">
@@ -74,8 +75,19 @@ function generateHtml(item){
             Rs. ${item.livePrice}
         </div>
         <div class="card-menu">
-            <li>Remove</li>
+            <li class="remove-items" onclick="removeitems(${item.itemId});" >Remove</li>
             <li>Move To WishList</li>
         </div>
     </div>`;
+}
+
+
+
+function removeitems(removeItemId) {
+    // let removeBtn = document.querySelector('.remove-items');
+    bagItem = bagItem.filter(item => item !== removeItemId);
+    localStorage.setItem("cartItems", JSON.stringify(bagItem));
+
+    loadBagItems();
+    displayBagItems();
 }

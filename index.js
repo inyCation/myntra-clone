@@ -20,12 +20,11 @@ ham.addEventListener('click', () => {
 
 function onLoadCalls(){
     displayItemsOnHomePage();
-    if(bagItem.length != 0){
+    if(bagItem.length > 0){
         document.querySelector('.bagItemCount').style.display = "block";
         cartCountDisplay(bagItem.length);
     }else{
         document.querySelector('.bagItemCount').style.display = "none";
-
     }
 }
 
