@@ -30,7 +30,7 @@ function onLoadCalls() {
 
 function displayItemsOnHomePage() {
     let cardContainer = document.querySelector('.card-container');
-    let innerHtml = [];``
+    let innerHtml = [];
     items.forEach((item, i) => {
         innerHtml += cardHtml(i);
     })
