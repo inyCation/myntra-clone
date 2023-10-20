@@ -21,8 +21,8 @@ ham.addEventListener('click', () => {
 function onLoadCalls() {
     displayItemsOnHomePage();
     if (bagItem.length > 0) {
-        document.querySelector('.bagItemCount').style.display = "block";
         cartCountDisplay(bagItem.length);
+        document.querySelector('.bagItemCount').style.display = "block";
     } else {
         document.querySelector('.bagItemCount').style.display = "none";
     }
@@ -30,7 +30,7 @@ function onLoadCalls() {
 
 function displayItemsOnHomePage() {
     let cardContainer = document.querySelector('.card-container');
-    let innerHtml = [];
+    let innerHtml = [];``
     items.forEach((item, i) => {
         innerHtml += cardHtml(i);
     })
@@ -67,16 +67,12 @@ function cardHtml(itemID) {
 
 function addToBag(itemID) {
     let popUp = document.querySelector(".pop-up");
-
-    // Check if the item is already in the cart
+    cartCountDisplay(bagItem.length);
     if (bagItem.includes(itemID)) {
-        // If it's a duplicate, display a pop-up or perform the desired action
         showDuplicateItemPopup();
     } else {
-        // If it's a new item, add it to the cart
         bagItem.push(itemID);
         localStorage.setItem("cartItems", JSON.stringify(bagItem));
-        cartCountDisplay(bagItem.length);
     }
 }
 

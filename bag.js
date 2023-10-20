@@ -24,8 +24,13 @@ bag.addEventListener('click', () => {
         bag_icon.style.color = "black";
         count.style.display = "block";
         document.body.style.overflow = "auto";
+
+
     }
+
 })
+
+
 
 
 function onLoadCalls() {

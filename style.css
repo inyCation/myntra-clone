@@ -245,7 +245,9 @@ main .card-container {
     left: .7rem;
 }
 
-.card .img-container .stars .ratings {}
+.card .img-container .stars .ratings {
+    
+}
 
 .card-container .card .img-container .addWishlist {
     display: none;
@@ -257,6 +259,8 @@ main .card-container {
     bottom: 1rem;
     left: 0;
     text-align: center;
+
+    cursor: pointer;
 }
 
 .card-container .card .img-container .addWishlist span {
@@ -420,7 +424,7 @@ main .card-container {
 .checkout-area .promo input{
     border: none;
     outline: none;
-    padding-left: .3rem`;
+    padding-left: .3rem;
 }
 .checkout-area .promo div{
     line-height: 1.4rem;
