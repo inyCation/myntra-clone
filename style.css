@@ -13,12 +13,63 @@
 li {
     list-style-type: none;
 }
-a{
+
+a {
     text-decoration: none;
 }
+
 body {
     background: #f5f5f5;
     /* overflow: hidden; */
+}
+
+
+/* pop-up */
+.pop-up {
+    display: none;
+
+    background: #f42020ea;
+    color: #000;
+    width: 16rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+
+    font-size: .7rem;
+    position: fixed;
+    z-index: 30;
+    top: 4rem;
+    right: 5vw;
+
+    border-radius: .5rem;
+}
+
+.pop-up-show {
+    display: block;
+    animation: shake 0.9s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(5px)
+    }
+
+    50% {
+        transform: translateX(-5px)
+    }
+
+    75% {
+        transform: translateX(5px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+
 }
 
 .nav-bar {
@@ -259,7 +310,7 @@ main .card-container {
 /* bag section */
 
 
-.bag-container{
+.bag-container {
     display: none;
     background-color: #f6f4f0;
 
@@ -270,17 +321,20 @@ main .card-container {
     top: 4.8rem;
     left: 1vw;
 }
-.bag-display{
+
+.bag-display {
     display: block;
 }
-.bag-container .cart{
+
+.bag-container .cart {
     margin-top: 3rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     position: relative;
 }
-.bag-container .cart .cart-items{
+
+.bag-container .cart .cart-items {
     display: flex;
 
     align-items: center;
@@ -288,60 +342,126 @@ main .card-container {
     text-transform: capitalize;
     height: 80vh;
     overflow-y: scroll;
-    
+
     position: absolute;
     left: 5vw;
     top: -6vh;
 
 }
-.bag-container .cart .cart-items .items{
+
+.bag-container .cart .cart-items .items {
     display: flex;
     justify-content: space-between;
     align-items: start;
     flex-direction: row;
-    
+
     width: 60vw;
     border-top: 2px solid rgb(0, 0, 0);
     padding: 1rem;
     position: relative;
 }
-.cart .cart-items .items:first-child{
+
+.cart .cart-items .items:first-child {
     margin-top: 1rem;
 }
-.cart .cart-items .items .image img{
+
+.cart .cart-items .items .image img {
     height: 200px;
     width: 130px;
 }
-.cart-items .items .product-detail{
+
+.cart-items .items .product-detail {
     margin-top: .5rem;
-    margin-left: .5rem;
+    margin-left: -5.5rem;
 }
-.items .product-detail .product-name{
+
+.items .product-detail .product-name {
     font-size: 1.2rem;
     font-weight: 700;
 }
-.items .product-detail .brand-name{
+
+.items .product-detail .brand-name {
     font-size: .9rem;
 }
-.card-menu{
+
+.card-menu {
     display: flex;
     justify-content: space-between;
     width: 10rem;
     font-size: .8rem;
-    
+
     position: absolute;
     left: 12.3rem;
     bottom: .8rem;
 }
 
-.checkout-area{
+.checkout-area {
     position: absolute;
-    right: 10vw;
+    right:5vw;
     top: 15vh;
-}   
 
+    /* background: #c8303072; */
+    width: 25vw;
+    height: 40vh;
 
-.remove-items{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.checkout-area .promo{
+    display: flex;
+    height: 2rem;
+    width: 80%;
+    background: #ad2828;
+    margin: .5rem;
+    border: 1px solid #000;
+}
+.checkout-area .promo input{
+    border: none;
+    outline: none;
+    padding-left: .3rem`;
+}
+.checkout-area .promo div{
+    line-height: 1.4rem;
+    padding: .3rem;
+    cursor: pointer;
+    text-align: center;
+    padding-left: 1.5rem;
+}
+.checkout-area .cost-calc{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 80%;
+}
+.checkout-area .cost-calc .shipping{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+}
+.checkout-area .cost-calc .price{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-direction: column;
+}
+.checkout-area .checkout{
+    width: 60%;
+    height: 3rem;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+    background: #e9e324;
+    color: #000;
+    border: 2px solid black;
+}
+.remove-items {
     cursor: pointer;
 }
 

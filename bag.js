@@ -1,4 +1,6 @@
 bagItem = JSON.parse(localStorage.getItem("cartItems")) || [];
+let livePrice;
+let MRP;
 let bagItemsObjects;
 onLoadCalls();
 
@@ -9,6 +11,7 @@ let count = document.querySelector('.bagItemCount');
 
 bag.addEventListener('click', () => {
     displayBagItems();
+    checkout();
     bagContainer.classList.toggle('bag-display');
     if (bag_icon.innerText === "shopping_bag") {
         bag_icon.innerText = "close";
@@ -28,12 +31,17 @@ bag.addEventListener('click', () => {
 function onLoadCalls() {
     loadBagItems();
     displayBagItems();
+    checkout();
 }
 
 function loadBagItems() {
+    livePrice = 0;
+    MRP = 0;
     bagItemsObjects = bagItem.map(itemID => {
         for (let i = 0; i < items.length; i++) {
             if (itemID == items[i].itemId) {
+                livePrice += items[i].livePrice;
+                MRP += items[i].MRP;
                 return items[i];
             }
         }
@@ -58,17 +66,9 @@ function generateHtml(item) {
             <div class="product-name">${item.productName}</div>
             <div class="brand-name">${item.brandName}</div>
         </div>
-        <div class="each-price">
-            <h2>Each</h2>Rs. ${item.livePrice}
-        </div>
-        <div class="quantity">
-            <h2>Quantity</h2>
-            <select name="quantity" id="quantity" de>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
+        <div class="discount">
+            <h2>Discount</h2>
+            Rs. ${item.discount}%
         </div>
         <div class="total">
             <h2>Total</h2>
@@ -90,4 +90,41 @@ function removeitems(removeItemId) {
 
     loadBagItems();
     displayBagItems();
+    checkout();
+}
+
+function checkout() {
+    let checkoutArea = document.querySelector(".checkout-area");
+    let shipping = 0;
+
+    if (bagItem.length >= 1) {
+        if (livePrice <= 249) {
+            shipping = 49;
+        }
+    }
+
+    let innerHtml = `
+    <div class="promo">
+        <input type="text" name="promo" id="promo" class="promo-input" placeholder="Promo Code">
+        <div class="promo-submit-btn">Apply</div>
+    </div>
+    <div class="cost-calc">
+        <div class="shipping">
+            <h3>Shipping cost</h3>
+            <h4 class="discount">Discount</h4>
+            <h3>Estimated Total </h3>
+        </div>
+        <div class="price">
+            <h3>${shipping}</h3>
+            <h4 class="discount">Rs. ${MRP.toFixed(2)}</h4>
+            <h3>Rs. ${livePrice.toFixed(2)}</h3>
+        </div>
+    </div>
+    <div class="checkout">
+        <span class="material-symbols-outlined">
+            lock
+        </span> <span>Checkout</span>
+    </div>`;
+
+    checkoutArea.innerHTML = innerHtml;
 }

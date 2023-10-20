@@ -1,4 +1,4 @@
-let bagItem =  JSON.parse(localStorage.getItem("cartItems")) || [];
+let bagItem = JSON.parse(localStorage.getItem("cartItems")) || [];
 onLoadCalls();
 
 
@@ -18,20 +18,20 @@ ham.addEventListener('click', () => {
     }
 })
 
-function onLoadCalls(){
+function onLoadCalls() {
     displayItemsOnHomePage();
-    if(bagItem.length > 0){
+    if (bagItem.length > 0) {
         document.querySelector('.bagItemCount').style.display = "block";
         cartCountDisplay(bagItem.length);
-    }else{
+    } else {
         document.querySelector('.bagItemCount').style.display = "none";
     }
 }
 
-function displayItemsOnHomePage(){
+function displayItemsOnHomePage() {
     let cardContainer = document.querySelector('.card-container');
     let innerHtml = [];
-    items.forEach((item,i) =>{
+    items.forEach((item, i) => {
         innerHtml += cardHtml(i);
     })
     cardContainer.innerHTML = innerHtml;
@@ -65,13 +65,31 @@ function cardHtml(itemID) {
     </div>`;
 }
 
-function addToBag(itemID){
-    bagItem.push(itemID);
-    localStorage.setItem("cartItems", JSON.stringify(bagItem));
-    cartCountDisplay(bagItem.length);
+function addToBag(itemID) {
+    let popUp = document.querySelector(".pop-up");
+
+    // Check if the item is already in the cart
+    if (bagItem.includes(itemID)) {
+        // If it's a duplicate, display a pop-up or perform the desired action
+        showDuplicateItemPopup();
+    } else {
+        // If it's a new item, add it to the cart
+        bagItem.push(itemID);
+        localStorage.setItem("cartItems", JSON.stringify(bagItem));
+        cartCountDisplay(bagItem.length);
+    }
 }
 
-function cartCountDisplay(len){
+function showDuplicateItemPopup() {
+    let popUp = document.querySelector(".pop-up");
+    popUp.textContent = "You Have Already Maximum Quantity In Cart!!";
+    popUp.classList.add("pop-up-show");
+    setTimeout(() => {
+        popUp.classList.remove("pop-up-show");
+    }, 5000); 
+}
+
+function cartCountDisplay(len) {
     let bagItemCount = document.querySelector('.bagItemCount');
-    bagItemCount.innerText = len; 
+    bagItemCount.innerText = len;
 }
